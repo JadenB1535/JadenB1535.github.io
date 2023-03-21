@@ -133,7 +133,7 @@
             //array = result.dataSync();
             //let a = tf.tensor1d(array);
             //a = tf.softmax(a);
-            console.log(num_classes[tf.argMax(result, 1).dataSync()[0]]);
+            alert(num_classes[tf.argMax(result, 1).dataSync()[0]]);
             //console.log(num_classes[]);
             inputTensor.dispose();
             inputTensorNormalized.dispose();
