@@ -21,6 +21,8 @@
 
 <script>
 
+    document.querySelector('#inputImage').click();
+
     const model = load();  // load model immediately to avoid delay when user clicks 'Predict'
     const num_classes = ['Bok Choy', 'Broccoli', 'Cabbage', 'Carrot', 'Cucumber', 'Garlic', 'Ginger', 'Napa Cabbage', 'Potato', 'Red Onion', 'Tomato'];
     let inputTensor = null;
