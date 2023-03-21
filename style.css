@@ -16,7 +16,7 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    background-color: #96ff00;
+    background-color: #11E07D;
 }
 
 
@@ -54,7 +54,7 @@ body {
     border-radius: 35px;
     width: 80%;
     height: 150px;
-    background-color: #11E07D;  
+    background-color: #96ff00;  
 }
 
 #proceedBtn p{
