@@ -54,11 +54,11 @@ body {
     border-radius: 35px;
     width: 80%;
     height: 150px;
-    background-color: #96ff00;  
+    background-color: white;  
 }
 
 #proceedBtn p{
-    color: white;
+    color: #96ff00;
     font-weight: 900;
     font-family: 'Inter', sans-serif;
     font-size: 3.5em;
