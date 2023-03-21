@@ -21,8 +21,8 @@
 
 <script>
 
-    document.getElementById('inputImage').click();
-
+    
+    openFileChooser();
     const model = load();  // load model immediately to avoid delay when user clicks 'Predict'
     const num_classes = ['Bok Choy', 'Broccoli', 'Cabbage', 'Carrot', 'Cucumber', 'Garlic', 'Ginger', 'Napa Cabbage', 'Potato', 'Red Onion', 'Tomato'];
     let inputTensor = null;
@@ -50,6 +50,15 @@
         });
         fr.readAsDataURL(this.files[0]);
     });
+
+    function openFileChooser() {
+      var evObj = document.createEvent('MouseEvents');
+      evObj.initMouseEvent('click', true, true, window);  
+      setTimeout(function()
+      { 
+        document.getElementById('inputImage').dispatchEvent(evObj);      
+      },100);      
+    }
 
     async function load() {
         const model = await tf.loadLayersModel('model.json');
