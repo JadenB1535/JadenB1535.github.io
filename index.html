@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.3.0/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/nicolaspanel/numjs@0.15.1/dist/numjs.min.js"></script>
+
+
+
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+    <img onload="predict(model)" id="image" src="" width="224" height="224" />
+    <div>
+        <input type="file" id="inputImage" capture="user" accept="image/*">
+    </div>
+</body>
+
+<script>
+
+    const num_classes = ['Bok Choy', 'Broccoli', 'Cabbage', 'Carrot', 'Cucumber', 'Garlic', 'Ginger', 'Napa Cabbage', 'Potato', 'Red Onion', 'Tomato'];
+    let inputTensor = null;
+    let inputTensorNormalized = null;
+    let inputTensorResized = null;
+    let inputTensorBatched = null;
+
+    document.querySelector("#inputImage").addEventListener("change", function () {
+        const fr = new FileReader();
+
+        fr.addEventListener("load", () => {
+            const img = new Image();
+            img.src = fr.result;
+            document.querySelector("#image").setAttribute("src", fr.result);
+            if (document.querySelector("#image").src != null) {
+                inputTensor = tf.browser.fromPixels(document.querySelector("#image"));
+                inputTensorResized = inputTensor.toFloat();
+                const offset = tf.scalar(255.0);
+                inputTensorNormalized = inputTensorResized.div(offset);
+                inputTensorBatched = inputTensorNormalized.expandDims(0);
+                //inputTensor = tf.expandDims(inputTensor, axis=0);
+                console.log(inputTensorBatched.shape);
+            }
+
+        });
+        fr.readAsDataURL(this.files[0]);
+    });
+
+    async function load() {
+        const model = await tf.loadLayersModel('model/model/model.json');
+        return model;
+    };
+
+    function predict(model) {
+
+
+        // first we get the value in the input field
+        //const inputImage = document.getElementById('inputImage').value;
+        //var inputTensor = tf.tensor([parseFloat(inputImage)]);  // then convert to tensor
+        //const inputTensor = tf.expandDims(tf.tensor([parseInt(inputImage)]), 0);  // then convert to tensor
+        //const inputTensor = tf.browser.fromPixels(inputImage);
+        // inputTensor = tf.expandDims(inputTensor, axis=0);
+        // inputTensor = tf.expandDims(inputTensor, axis=0);
+        // inputTensor = tf.expandDims(inputTensor, axis=0);
+        //console.log(inputTensor.shape);
+
+        // now lets make the prediction, we use .then because the model is a promise
+        // (this is confusing as a Python user, but useful so check it out if interested)
+        model.then(model => {
+            //let array = [];
+            let result = model.predict(inputTensorBatched);
+            //let prediction = tf.softmax(result);
+            result.print();
+            //array = result.dataSync();
+            //let a = tf.tensor1d(array);
+            //a = tf.softmax(a);
+            console.log(num_classes[tf.argMax(result, 1).dataSync()[0]]);
+            //console.log(num_classes[]);
+            inputTensor.dispose();
+            inputTensorNormalized.dispose();
+            inputTensorResized.dispose();
+            inputTensorBatched.dispose();
+            result.dispose();
+        });
+    };
+
+    const model = load();  // load model immediately to avoid delay when user clicks 'Predict'
+
+</script>
+
+</html>
