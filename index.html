@@ -69,6 +69,7 @@
         slideIndex++;
         if (slideIndex > slides.length) {
             document.getElementById('timeline' + (slideIndex - 1).toString()).style.opacity = "0";
+            document.getElementById('timeline' + (slideIndex - 1).toString()).style.width = "0%";
             slideIndex = 1;
         }
         slides[slideIndex - 1].style.display = "block";
