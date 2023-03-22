@@ -101,7 +101,10 @@
             }
 
         });
-        fr.readAsDataURL(this.files[0]);
+
+        if (this.files[0] != null) {
+            fr.readAsDataURL(this.files[0]);
+        }
     });
 
 
