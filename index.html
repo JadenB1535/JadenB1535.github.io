@@ -96,8 +96,9 @@
                 const offset = tf.scalar(255.0);
                 inputTensorNormalized = inputTensorResized.div(offset);
                 inputTensorBatched = inputTensorNormalized.expandDims(0);
+                //
                 //inputTensor = tf.expandDims(inputTensor, axis=0);
-                console.log(inputTensorBatched.shape);
+                //console.log(inputTensorBatched.shape);
             }
 
         });
@@ -120,9 +121,9 @@
 
     function predict(model) {
 
-        document.getElementById("p1").innerHTML = "Analysing image...";
-        document.getElementById("proceedBtn").style.pointerEvents = "none";
-        document.getElementById("proceedBtn").style.opacity = "0.8";
+        // document.getElementById("p1").innerHTML = "Analysing image...";
+        // document.getElementById("proceedBtn").style.pointerEvents = "none";
+        // document.getElementById("proceedBtn").style.opacity = "0.8";
         // first we get the value in the input field
         //const inputImage = document.getElementById('inputImage').value;
         //var inputTensor = tf.tensor([parseFloat(inputImage)]);  // then convert to tensor
@@ -143,16 +144,16 @@
             //array = result.dataSync();
             //let a = tf.tensor1d(array);
             //a = tf.softmax(a);
-            //alert(num_classes[tf.argMax(result, 1).dataSync()[0]]);
+            alert(num_classes[tf.argMax(result, 1).dataSync()[0]]);
             //console.log(num_classes[]);
             inputTensor.dispose();
             inputTensorNormalized.dispose();
             inputTensorResized.dispose();
             inputTensorBatched.dispose();
-            result.dispose();
-            document.getElementById("proceedBtn").style.pointerEvents = "auto";
-            document.getElementById("p1").innerHTML = "Get started";
-            document.getElementById("proceedBtn").style.opacity = "1";
+            // result.dispose();
+            // document.getElementById("proceedBtn").style.pointerEvents = "auto";
+            // document.getElementById("p1").innerHTML = "Get started";
+            // document.getElementById("proceedBtn").style.opacity = "1";
         });
     };
 
