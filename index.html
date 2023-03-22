@@ -42,7 +42,7 @@
     </div>
     <label id="btnContainer" for="inputImage">
         <div id="proceedBtn">
-            <p>Get started</p>
+            <p id="p1">Get started</p>
         </div>
         <input type="file" id="inputImage" capture="user" accept="image/*">
     </label>
@@ -108,7 +108,8 @@
 
     async function loadModel() {
         const model = await tf.loadLayersModel('model.json');
-        alert("model loaded");
+        //alert("model loaded");
+        document.getElementById("p1").innerHTML = "Loading model...";
         document.getElementById("proceedBtn").style.pointerEvents = "auto";
         document.getElementById("proceedBtn").style.opacity = "1";
         return model;
@@ -116,6 +117,7 @@
 
     function predict(model) {
 
+        document.getElementById("p1").innerHTML = "Analysing image...";
         document.getElementById("proceedBtn").style.pointerEvents = "none";
         document.getElementById("proceedBtn").style.opacity = "0.8";
         // first we get the value in the input field
@@ -138,15 +140,16 @@
             //array = result.dataSync();
             //let a = tf.tensor1d(array);
             //a = tf.softmax(a);
-            alert(num_classes[tf.argMax(result, 1).dataSync()[0]]);
-            document.getElementById("proceedBtn").style.pointerEvents = "auto";
-            document.getElementById("proceedBtn").style.opacity = "1";
+            //alert(num_classes[tf.argMax(result, 1).dataSync()[0]]);
             //console.log(num_classes[]);
             inputTensor.dispose();
             inputTensorNormalized.dispose();
             inputTensorResized.dispose();
             inputTensorBatched.dispose();
             result.dispose();
+            document.getElementById("p1").innerHTML = "Get started";
+            document.getElementById("proceedBtn").style.pointerEvents = "auto";
+            document.getElementById("proceedBtn").style.opacity = "1";
         });
     };
 
