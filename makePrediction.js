@@ -7,7 +7,7 @@ async function predict() {
         const result = model.predict(inputTensorBatched);
 
         // alerting the result
-        alert(num_classes[tf.argMax(result, 1).dataSync()[0]]);
+        document.getElementById("p1").innerHTML = num_classes[tf.argMax(result, 1).dataSync()[0]];
 
         // disposing of all tensors
         inputTensor.dispose();
