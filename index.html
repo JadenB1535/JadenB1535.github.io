@@ -42,7 +42,7 @@
     </div>
     <label id="btnContainer" for="inputImage">
         <div id="proceedBtn">
-            <p id="p1">Get started</p>
+            <p id="p1">Loading model...</p>
         </div>
         <input type="file" id="inputImage" capture="user" accept="image/*">
     </label>
@@ -109,9 +109,9 @@
     async function loadModel() {
         const model = await tf.loadLayersModel('model.json');
         //alert("model loaded");
-        document.getElementById("p1").innerHTML = "Loading model...";
         document.getElementById("proceedBtn").style.pointerEvents = "auto";
         document.getElementById("proceedBtn").style.opacity = "1";
+        document.getElementById("p1").innerHTML = "Get started";
         return model;
     };
 
@@ -147,8 +147,8 @@
             inputTensorResized.dispose();
             inputTensorBatched.dispose();
             result.dispose();
-            document.getElementById("p1").innerHTML = "Get started";
             document.getElementById("proceedBtn").style.pointerEvents = "auto";
+            document.getElementById("p1").innerHTML = "Get started";
             document.getElementById("proceedBtn").style.opacity = "1";
         });
     };
