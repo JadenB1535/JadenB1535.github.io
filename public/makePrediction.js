@@ -1,12 +1,11 @@
 async function predict() {
-    // showing loading screen
-    document.getElementById("analysing").style.visibility = "visible";
-    // making button disabled while predicting
-    document.getElementById("clickable-overlay").disabled = true;
+
+
+
+    await showLoading();
     // now lets make the prediction, we use .then because the model is a promise
     // (this is confusing as a Python user, but useful so check it out if interested)
     await model.then(model => {
-
         // making the prediction
         const result = model.predict(inputTensorBatched);
 
@@ -19,12 +18,28 @@ async function predict() {
         inputTensorNormalized.dispose();
         inputTensorResized.dispose();
         inputTensorBatched.dispose();
+
+        // get()
+        //     .catch(err => console.log(err));
     });
 
+    await hideLoading();
+
+};
+
+async function showLoading() {
+    //console.log("Helo");
+    // showing loading screen
+    document.getElementById("analysing").innerHTML = "Analyzing...please wait";
+    // making button disabled while predicting
+    document.getElementById("clickable-overlay").disabled = true;
+}
+
+async function hideLoading() {
+    //console.log("Hel1o");
+
     // remove loading screen
-    document.getElementById("analysing").style.visibility = "hidden";
+    document.getElementById("p1").innerHTML = "Get started";
     // making button enabled after predicting
     document.getElementById("clickable-overlay").disabled = false;
-    get()
-        .catch(err => console.log(err));
-};
+}

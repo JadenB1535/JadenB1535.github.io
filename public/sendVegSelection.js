@@ -17,15 +17,17 @@ async function get() {
         headers: new Headers({ "Content-Type": "application/json" }),
     });
     const json = await response.json();
-    if (json.length < 3) {
-        json.forEach(i => {
-            if (i.vegetableName == selection) {
-                result = false;
-            }
-        })
-    }
+
+    json.forEach(i => {
+        if (i.vegetableName == selection) {
+            result = false;
+            alert("Vegetable already added. Try another vegetable.");
+        }
+    })
     if (result) {
         post()
             .catch(err => console.log(err));
+        alert("Vegetable successfully added!");
+
     }
 }
