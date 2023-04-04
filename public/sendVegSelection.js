@@ -1,6 +1,6 @@
 async function post() {
     // sending post request
-    const response = await fetch('../server/sendVegSelection', {
+    const response = await fetch('../sendVegSelection', {
         method: "POST",
         body: JSON.stringify({ vegetableName: sessionStorage.getItem("Vegetable") }),
         headers: new Headers({ "Content-Type": "application/json" }),
@@ -12,7 +12,7 @@ async function post() {
 async function get() {
     let result = true;
     // sending get request
-    const response = await fetch('../server/getSelectionData', {
+    const response = await fetch('../getSelectionData', {
         method: "GET",
         headers: new Headers({ "Content-Type": "application/json" }),
     });
