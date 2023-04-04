@@ -3,6 +3,7 @@ async function predict() {
     // (this is confusing as a Python user, but useful so check it out if interested)
     // switch to loading screen
     window.location.href = "loading.html";
+    document.getElementById('clickable-overlay').disabled = 'true';
 
     await model.then(async model => {
 
@@ -18,11 +19,6 @@ async function predict() {
         inputTensorNormalized.dispose();
         inputTensorResized.dispose();
         inputTensorBatched.dispose();
-
-        
     });
-
-    //switch back to homescreen
-    //window.location.href = "index.html";
 };
 

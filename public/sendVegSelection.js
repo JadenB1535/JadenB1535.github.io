@@ -28,7 +28,7 @@ async function get() {
             .catch(err => console.log(err));
         sessionStorage.clear();
         alert("Vegetable successfully added!");
-    }   
+    }
     window.location.href = "index.html";
 }
 
