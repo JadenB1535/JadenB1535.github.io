@@ -6,19 +6,22 @@ async function predict() {
     document.getElementById('clickable-overlay').disabled = 'true';
 
     await model.then(async model => {
-
         // making the prediction
-        const result = model.predict(inputTensorBatched);
+        const result = model.predict(tensor);
+
 
         // storing result in session storage
-        sessionStorage.setItem("Vegetable", num_classes[tf.argMax(result, 1).dataSync()[0]]);
+        
+            sessionStorage.setItem("Vegetable", num_classes[tf.argMax(result, 1).dataSync()[0]]);
+        
         //alert(selection);
 
         // disposing of all tensors
-        inputTensor.dispose();
-        inputTensorNormalized.dispose();
-        inputTensorResized.dispose();
-        inputTensorBatched.dispose();
+        tensor.dispose();
+        // inputTensor.dispose();
+        // inputTensorNormalized.dispose();
+        // inputTensorResized.dispose();
+        // inputTensorBatched.dispose();
     });
 };
 
