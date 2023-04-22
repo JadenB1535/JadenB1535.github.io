@@ -35,5 +35,5 @@ app.get('/getSelectionData', async (req, res) => {
 });
 
 app.listen(3001, ["10.128.122.74", "localhost"], function () {
-    console.log("Server is running on port 3001")
-});
+    console.log("Server is running on port 3001");
+}); 
