@@ -51,7 +51,8 @@ function loadImage() {
 
             // create a new tensor from the normalized pixel data
             tensor = tf.tensor4d(imageData, [1, inputSize, inputSize, 3]);
-       
+            
+            predict();
         };
 
 

@@ -7,7 +7,7 @@
 
 <script>
     var model = null;
-    const num_classes = ['Beetroot', 'Bokchoy', 'Broccoli', 'Carrot', 'Cauliflower', 'Corn', 'Cucumber', 'Garlic', 'Ginger', 'Napa cabbage', 'Potato', 'Pumpkin', 'Red onion', 'Romano bean', 'Tomato', 'White radish']
+    const num_classes = ['Bok choy', 'Broccoli', 'Carrot', 'Cauliflower', 'Corn', 'Cucumber', 'Garlic', 'Ginger', 'Napa cabbage', 'Potato', 'Pumpkin', 'Red onion', 'Romano bean', 'Tomato', 'White radish', 'Beetroot']
     var tensor = null;
     // var inputTensor = null;
     // var inputTensorNormalized = null;
@@ -27,7 +27,7 @@
 
 <body>
     <div id="background">
-        <img onload="predict()" id="image" src="" width="224" height="224" />
+        <img id="image" src="" width="224" height="224"/>
         <div id="slideshowContainer">
             <div class="slide" id="slideshow1">
                 <h1>Tip 1:</h1>

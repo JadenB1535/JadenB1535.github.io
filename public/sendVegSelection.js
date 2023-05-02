@@ -10,6 +10,7 @@ async function post(vege) {
 }
 
 async function get() {
+    var isValid = true;
     var vege = sessionStorage.getItem("Vegetable");
     // sending get request
     const response = await fetch('../getSelectionData', {
@@ -17,23 +18,29 @@ async function get() {
         headers: new Headers({ "Content-Type": "application/json" }),
     });
     const json = await response.json();
-    alert(json.length);
-    for (var i = 0; i < json.length + 1; i++) {
-        if (vege == null) {
-            alert("Vegetable cannot be detected. Please try again.");
-            break;
-        }
-        else if (i.vegetableName == vege) {
-            alert("Vegetable already added or may be invalid. Please try again.");
-            break;
-        }
-        else {
-            alert("Vegetable successfully added!");
-            post(vege)
-                .catch(err => console.log(err));
-            break;
+
+    if (json.length != 0) {
+        for (var i = 0; i < json.length; i++) {
+            if (vege == null) {
+                alert("Vegetable cannot be detected. Please try again.");
+                isValid = false;
+                break;
+            }
+            else if (json[i].vegetableName == vege) {
+                alert("Vegetable already added. Please try again.");
+                isValid = false;
+                break;
+            }
         }
     }
+
+    if (isValid) {
+        alert("Vegetable successfully added!");
+        post(vege)
+            .catch(err => console.log(err));
+    }
+
+
     sessionStorage.clear();
     window.location.href = "index.html";
 }
@@ -41,4 +48,10 @@ async function get() {
 
 
 get()
-    .catch(err => console.log(err));
+    .catch(err => {
+        alert(err);
+        window.location.href = "index.html";
+    }
+    );
+
+

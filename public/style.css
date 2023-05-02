@@ -34,7 +34,8 @@ body {
 }
 
 #image {
-    visibility: hidden;
+    visibility: block;
+    object-fit: cover;
     position: absolute;
 }
 

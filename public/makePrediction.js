@@ -1,14 +1,11 @@
 async function predict() {
-    // now lets make the prediction, we use .then because the model is a promise
-    // (this is confusing as a Python user, but useful so check it out if interested)
-    // switch to loading screen
-    window.location.href = "loading.html";
+    
+    // disable the get started button
     document.getElementById('clickable-overlay').disabled = 'true';
 
     await model.then(async model => {
         // making the prediction
         const result = model.predict(tensor);
-
 
         // storing result in session storage
         
@@ -23,5 +20,8 @@ async function predict() {
         // inputTensorResized.dispose();
         // inputTensorBatched.dispose();
     });
+
+    // switch to loading screen
+    window.location.href = "loading.html";
 };
 
