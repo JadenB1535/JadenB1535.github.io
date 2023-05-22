@@ -14,12 +14,8 @@ const vegSchema = new mongoose.Schema({
     vegetableName: String
 });
 
-const backSchema = new mongoose.Schema({
-    goBack: String
-});
 
 const Vegetable = mongoose.model("VegSelection", vegSchema);
-const backSentinel = mongoose.model("VegSentinel", backSchema);
 
 app.post("/sendVegSelection", async function (req, res) {
     const newVegetable = new Vegetable({
@@ -32,23 +28,14 @@ app.post("/sendVegSelection", async function (req, res) {
         }).catch(err => {
             console.log(err)
         })
-    const goBack = new backSentinel({
-        goBack: "yes"
-    });
-    goBack.save()
-        .then(data => {
-            console.log(data)
-            res.send(data)
-        }).catch(err => {
-            console.log(err)
-        })
 });
+
 
 app.get('/getSelectionData', async (req, res) => {
     let veg = await Vegetable.find().exec();
     res.send(veg);
 });
 
-app.listen(3001, ["192.168.68.116", "localhost"], function () {
+app.listen(3001, ["192.168.31.206", "localhost"], function () {
     console.log("Server is running on port 3001");
 }); 

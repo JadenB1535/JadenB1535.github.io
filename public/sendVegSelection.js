@@ -19,20 +19,41 @@ async function get() {
     });
     const json = await response.json();
 
+    // Manual testing for Matthias
     if (json.length != 0) {
-        for (var i = 0; i < json.length; i++) {
-            if (vege == null) {
-                alert("Vegetable cannot be detected. Please try again.");
-                isValid = false;
-                break;
-            }
-            else if (json[i].vegetableName == vege) {
-                alert("Vegetable already added. Please try again.");
-                isValid = false;
-                break;
-            }
+        if(json.length < 3){
+            vege = "Enter vegetable name";
+        }
+        else{
+            alert("Vegetable already added. Please try again.");
+                    isValid = false;
         }
     }
+
+    // if (json.length != 0) {
+    //     if(json.length < 3){
+    //         for (var i = 0; i < json.length; i++) {
+    //             if (vege == null) {
+    //                 alert("Vegetable cannot be detected. Please try again.");
+    //                 isValid = false;
+    //                 break;
+    //             }
+    //             else if (json[i].vegetableName == vege) {
+    //                 alert("Vegetable already added. Please try again.");
+    //                 isValid = false;
+    //                 break;
+    //             }
+    //         }
+    //     }
+    //     else{
+    //         alert("Vegetable already added. Please try again.");
+    //                 isValid = false;
+    //     }
+    // }
+
+
+
+
 
     if (isValid) {
         alert("Vegetable successfully added!");
