@@ -46,7 +46,7 @@ async function get() {
             }
         }
         else{
-            alert("Max vegetable count is 3. Please remove all vegetables and try again.");
+            alert("Max vegetable count is 3. Please remove a vegetable and try again.");
                     isValid = false;
         }
     }
